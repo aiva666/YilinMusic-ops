@@ -1,0 +1,37 @@
+.login-wrapper {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background:url("../../assets/images/bg-login.jpg") no-repeat 0 0/cover;
+    &>div.container {
+        position: absolute;
+        top:0;
+        left:50%;
+        transform: translateX(-50%);
+        height:100vh;
+        // background-color: #fff;
+        .form-wrapper {
+            position: absolute;
+            left:0;
+            top:50%;
+            transform: translateY(-50%);
+            width: 500px;
+            padding:26px;
+            border-radius: 10px;
+            background-color: #fff;
+            &>h2 {
+                font-size:32px;
+                text-align: center;
+                color:#1890ff;
+                letter-spacing: 4px;
+            }
+            .autoCode {
+                display: block;
+                background: #f00;
+                width: 100px;
+                height: 32px;
+                cursor: pointer;
+            }
+        }
+    }
+}
