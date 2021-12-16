@@ -1,3 +1,3 @@
-import axios from './Axios'
+import axios from "./Axios";
 
-export const Axios = axios
+export const Axios = axios;

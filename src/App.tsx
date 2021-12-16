@@ -1,29 +1,20 @@
-import { FC, useEffect } from 'react';
-import { BrowserRouter as Router, useRoutes, useNavigate, useLocation } from 'react-router-dom'
-import routerConfig from './routes/index.jsx'
+import { FC } from "react";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { Store } from "@/redux";
+import routerConfig from "./routes/index.jsx";
 
-import './App.less';
-import './App.scss';
+import "./App.less";
+import "./App.scss";
 
-const App: FC = () => {
+const App: FC = () => useRoutes(routerConfig);
 
-  let navigate = useNavigate()
-  const { pathname } = useLocation()
-  useEffect(() => {
-    if (pathname === '/') {
-      navigate('/login')
-    }
-  }, [pathname])
-  return useRoutes(routerConfig)
-}
-
-const AppWrapper: FC = () => {
-
-  return (
-    <Router>
-      <App />
-    </Router>
-  )
-}
+const AppWrapper: FC = () => (
+    <Provider store={Store}>
+        <Router>
+            <App />
+        </Router>
+    </Provider>
+);
 
 export default AppWrapper;

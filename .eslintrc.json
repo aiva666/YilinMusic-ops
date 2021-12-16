@@ -1,0 +1,116 @@
+{
+    "parserOptions": {
+        // 支持es6
+        "ecmaVersion": 6,
+        // 模块化
+        "sourceType": "module",
+        // 额外的语言特性
+        "ecmaFeatures": {
+            // 启用 JSX
+            "jsx": true,
+            // 允许在全局作用域下使用 return 语句
+            "globalReturn": false,
+            // 启用全局 strict mode (如果 ecmaVersion 是 5 或更高)
+            "impliedStrict": false,
+            // 启用实验性的 object rest/spread properties 支持
+            "experimentalObjectRestSpread": false
+        }
+    },
+    // 规则
+    "rules": {
+        // 要求使用 let 或 const 而不是 var
+        "no-var": "error",
+        // 要求使用 const 声明那些声明后不再被修改的变量
+        "prefer-const": "error",
+        // 禁用 Object 的构造函数
+        "no-new-object": "error",
+        // 要求或禁止对象字面量中方法和属性使用简写语法
+        "object-shorthand": "error",
+        // 禁用 Array 构造函数
+        "no-array-constructor": "error",
+        // 优先使用数组和对象解构
+        "prefer-destructuring": "error",
+        // 强制使用一致的反勾号、双引号或单引号
+        "quotes": "error",
+        // 要求使用模板字面量而非字符串连接
+        "prefer-template": "error",
+        // 禁用 eval()
+        "no-eval": "error",
+        // 禁止对 Function 对象使用 new 操作符
+        "no-new-func": "error",
+        // 禁止对 String，Number 和 Boolean 使用 new 操作符
+        "no-new-wrappers": "error",
+        // 强制在 function的左括号之前使用一致的空格
+        "space-before-function-paren": "error",
+        // 强制一致地使用 function 声明或表达式
+        "func-style": "error",
+        // 要求 IIFE 使用括号括起来
+        "wrap-iife": "error",
+        // 禁止在循环语句中出现包含不安全引用的函数声明
+        "no-loop-func": "error",
+        // 禁止对 function 的参数进行重新赋值
+        "no-param-reassign": "error",
+        // 要求使用扩展运算符而非 .apply()
+        "prefer-spread": "error",
+        // 要求回调函数使用箭头函数
+        "prefer-arrow-callback": "error",
+        // 强制箭头函数的箭头前后使用一致的空格
+        "arrow-spacing": "error",
+        // 要求箭头函数体使用大括号
+        "arrow-body-style": "error",
+        // 禁用不必要的构造函数
+        "no-useless-constructor": "error",
+        // 禁止重复模块导入
+        "no-duplicate-imports": "error",
+        // 禁用 __iterator__ 属性
+        "no-iterator": "error",
+        // 要求使用 === 和 !==
+        "eqeqeq": "error",
+        // 禁止在循环中出现 await
+        "no-await-in-loop": "error",
+        // 禁用 arguments.caller 或 arguments.callee
+        "no-caller": "error",
+        // 禁止出现空函数
+        "no-empty-function": "error",
+        // 禁止使用类似 eval() 的方法
+        "no-implied-eval": "error",
+        // 禁止使用绝对路径导入模块
+        "import/no-absolute-path": "error",
+        // 禁止导入时使用 webpack 加载器语法
+        "import/no-webpack-loader-syntax": "error",
+        // 确保所有导入都出现在其他语句之前
+        "import/first": "error",
+        // 在导入语句后强制换行
+        "import/newline-after-import": "error",
+        // 当组件属性值为true时可以省略
+        "react/boolean-prop-naming": "warn",
+        // 多个函数式组件可以放到一个文件中
+        "react/no-multi-comp": "warn",
+        // React 组件使用 PascalCase，组件实例使用 CamelCase
+        "react/jsx-pascal-case": "error",
+        // 验证关闭括号位置
+        "react/jsx-closing-bracket-location": "error",
+        // 自闭合的标签前要加一个空格
+        "react/jsx-tag-spacing": "error",
+        // 避免使用数组的索引作为 key 属性值, 建议使用稳定的ID
+        "react/no-array-index-key": "error",
+        // 当 JSX 标签超过一行时使用圆括号包裹
+        "react/jsx-wrap-multilines": "error",
+        // 没有子元素的标签请自闭合
+        "react/self-closing-comp": "error"
+    },
+    // 禁用一组文件的配置文件中的规则
+    "overrides": [
+        // {
+        //     "files": [
+        //         "*-test.js",
+        //         "*.spec.js"
+        //     ],
+        //     "rules": {
+        //         "no-unused-expressions": "off"
+        //     }
+        // }
+    ],
+    "extends": ["eslint:recommended", "react-app", "react-app/jest"],
+    "plugins": ["import", "react"]
+}

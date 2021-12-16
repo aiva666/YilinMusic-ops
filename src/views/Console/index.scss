@@ -1,0 +1,30 @@
+.console-root {
+    .logo {
+        height: 32px;
+        margin: 16px;
+        background: url("../../assets/images/logo.png") no-repeat center center/auto 100%;
+    }
+    .ant-layout-sider {
+        background-color: #fff;
+    }
+    .site-layout {
+        .trigger {
+            padding: 0 24px;
+            font-size: 18px;
+            line-height: 64px;
+            cursor: pointer;
+            transition: color 0.3s;
+            &:hover {
+                color: #d0344e;
+            }
+        }
+        .site-layout-background {
+            background: #fff;
+        }
+        .console-main {
+            margin: 26px 16px;
+            padding: 26px;
+            min-height: calc(100vh - 64px - 26px - 26px);
+        }
+    }
+}
