@@ -1,0 +1,39 @@
+.console-home {
+    &>header {
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+        padding:26px;
+        border-radius: 6px;
+        box-sizing: content-box;
+        .header-welcome {
+            display: flex;
+            align-items: center;
+            &>div {
+                margin-left: 16px;
+                p {
+                    margin-bottom: 6px;
+                    font-size: 16px;
+                }
+                h3 {
+                    font-size: 24px;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+        .btns {
+            display: flex;
+            align-items: center;
+            &>button {
+                &:first-of-type {margin-right: 16px;}
+            }
+        }
+    }
+    .section-user-statistical {
+        display: flex;
+        justify-content: space-between;
+        &>div {
+            width: calc(25% - 26px);
+        }
+    }
+}

@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-11-29 10:32:12
  * @LastEditors: Aiva
- * @LastEditTime: 2021-12-16 17:16:28
+ * @LastEditTime: 2021-12-17 10:06:19
  * @FilePath: \yilin-music-ops\src\views\Login\index.tsx
  */
 import React, { FC } from "react";
@@ -11,7 +11,9 @@ import { Form } from "sd-components-react";
 import "./index.scss";
 
 const Login: FC = () => {
+    // 引入路由对象
     const navigate = useNavigate();
+    // 表单校验规则
     const formFieldsConfig = [
         {
             dataIndex: "userName",
@@ -76,7 +78,7 @@ const Login: FC = () => {
             ),
         },
     ];
-
+    // 登录事件
     const loginHandler = (val: any): void => {
         navigate("/console");
     };

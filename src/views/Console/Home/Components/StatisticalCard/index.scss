@@ -1,0 +1,23 @@
+.statistical-card {
+    width: 100%;
+    padding: 26px;
+    background-color: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .statistical-card-icon {
+        font-size: 40px;
+        margin-right: 30px;
+    }
+    .statistical-card-text {
+        // width: 50%;
+        text-align: center;
+        h2 {
+            font-size: 36px;
+        }
+        p {
+            color:#999;
+        }
+    }
+}
