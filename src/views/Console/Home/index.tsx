@@ -2,12 +2,21 @@
  * @Author: Aiva
  * @Date: 2021-12-17 10:22:25
  * @LastEditors: Aiva
- * @LastEditTime: 2021-12-17 16:06:56
+ * @LastEditTime: 2021-12-20 16:08:53
  * @Description:
  * @FilePath: \yilin-music-ops\src\views\Console\Home\index.tsx
  */
 import React, { FC, useState } from "react";
-import { Avatar, Button } from "antd";
+import { Avatar, Button, Typography, Row, Col } from "antd";
+import {
+    Line,
+    LineConfig,
+    Column,
+    ColumnConfig,
+    Pie,
+    PieConfig,
+    Datum,
+} from "@ant-design/charts";
 import StatisticalCard from "./Components/StatisticalCard";
 import { RiseOutlined, TeamOutlined } from "@ant-design/icons";
 import "./index.scss";
@@ -16,7 +25,7 @@ import "./index.scss";
 type TUserStatisticalInfo = {
     todayIncrement: number;
     yesterdayIncrement: number;
-    weekIncrement:number,
+    weekIncrement: number;
     allUserNumber: number;
 };
 
@@ -26,6 +35,13 @@ type TUserStatisticalInfoList = {
     count: number;
     desc: string;
     icon: React.ReactNode;
+};
+
+// 图表配置类型
+type TChartConfig = {
+    userIncrement: LineConfig;
+    accessCount: ColumnConfig;
+    genderInfo: PieConfig;
 };
 
 // 用于计算用户统计数据
@@ -54,9 +70,25 @@ const Home: FC = () => {
         useState<TUserStatisticalInfo>({
             todayIncrement: 0,
             yesterdayIncrement: 0,
-            weekIncrement:0,
+            weekIncrement: 0,
             allUserNumber: 0,
         });
+
+    // 用户增长趋势数据
+    const [userIncrement, setUserIncrementData] = useState([
+        { month: "2021-01", value: 38 },
+        { month: "2021-02", value: 52 },
+        { month: "2021-03", value: 61 },
+        { month: "2021-04", value: 45 },
+        { month: "2021-05", value: 54 },
+        { month: "2021-06", value: 65 },
+        { month: "2021-07", value: 51 },
+        { month: "2021-08", value: 39 },
+        { month: "2021-09", value: 77 },
+        { month: "2021-10", value: 58 },
+        { month: "2021-11", value: 74 },
+        { month: "2021-12", value: 88 },
+    ]);
 
     // 用户统计数据转为list
     const userStatisticalInfoList = (): TUserStatisticalInfoList[] => {
@@ -75,6 +107,90 @@ const Home: FC = () => {
         }
         return arr;
     };
+
+    // 图表配置
+    const chartConfig: TChartConfig = {
+        // 用户增加趋势
+        userIncrement: {
+            data: userIncrement,
+            xField: "month",
+            padding: 26,
+            yField: "value",
+            point: {
+                size: 5,
+            },
+            smooth: true,
+            tooltip: {
+                formatter: (datum: Datum) => ({
+                    name: "增长量",
+                    value: datum.value,
+                }),
+            },
+        },
+        // 平台访问量
+        accessCount: {
+            data: userIncrement,
+            xField: "month",
+            padding: 26,
+            yField: "value",
+            label: {
+                // 可手动配置 label 数据标签位置
+                position: "middle",
+                // 'top', 'bottom', 'middle',
+                // 配置样式
+                style: {
+                    fill: "#FFFFFF",
+                    opacity: 0.6,
+                },
+            },
+            xAxis: {
+                label: {
+                    autoHide: true,
+                    autoRotate: false,
+                },
+            },
+            meta: {
+                month: {
+                    alias: "日期",
+                },
+                value: {
+                    alias: "访问量",
+                },
+            },
+        },
+        // 性别分布
+        genderInfo: {
+            appendPadding: 10,
+            data:userIncrement.slice(0,3),
+            angleField: "value",
+            colorField: "month",
+            padding:26,
+            radius: 1,
+            innerRadius: 0.6,
+            label: {
+                type: "inner",
+                offset: "-50%",
+                content: "{value}",
+                style: {
+                    textAlign: "center",
+                    fontSize: 14,
+                },
+            },
+            interactions: [
+                {
+                    type: "element-selected",
+                },
+                {
+                    type: "element-active",
+                },
+            ],
+            statistic: {
+                title: false,
+                content: undefined,
+            },
+        },
+    };
+
     return (
         <div className="console-home">
             {/* 欢迎语 Start */}
@@ -104,7 +220,7 @@ const Home: FC = () => {
             <section>
                 <div className="section-user-statistical">
                     {userStatisticalInfoList().map(item => (
-                        <div key={item.title}>
+                        <div key={item.desc}>
                             <StatisticalCard
                                 title={item.title}
                                 icon={item.icon}
@@ -116,6 +232,43 @@ const Home: FC = () => {
             </section>
 
             {/* 用户统计 End */}
+
+            {/* 用户增加趋势 Start */}
+
+            <section className="section-user-incrementOfLatestMonth container-card">
+                <Typography.Title level={4}>用户增长趋势</Typography.Title>
+                <Line
+                    style={{ backgroundColor: "#fff" }}
+                    {...chartConfig.userIncrement}
+                />
+            </section>
+
+            {/* 用户增加趋势 End */}
+
+            <section>
+                <Row gutter={26}>
+                    <Col span={16}>
+                        <div className="container-card">
+                            <Typography.Title level={4}>
+                                平台访问量
+                            </Typography.Title>
+                            <Column
+                                {...chartConfig.accessCount}
+                            />
+                        </div>
+                    </Col>
+                    <Col span={8}>
+                        <div className="container-card">
+                            <Typography.Title level={4}>
+                                用户性别
+                            </Typography.Title>
+                            <Pie
+                                {...chartConfig.genderInfo}
+                            />
+                        </div>
+                    </Col>
+                </Row>
+            </section>
         </div>
     );
 };

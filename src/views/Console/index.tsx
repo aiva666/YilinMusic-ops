@@ -1,7 +1,7 @@
 /*
  * @Date: 2021-11-29 12:06:35
  * @LastEditors: Aiva
- * @LastEditTime: 2021-12-17 14:32:28
+ * @LastEditTime: 2021-12-20 16:18:46
  * @FilePath: \yilin-music-ops\src\views\Console\index.tsx
  */
 /* eslint react-hooks/exhaustive-deps:off */
@@ -65,7 +65,13 @@ const Console: FC = () => {
                         {menuRender(item.children)}
                     </SubMenu>
                 ) : (
-                    <Menu.Item key={item.path} icon={item.icon}>
+                    <Menu.Item
+                        key={item.path}
+                        icon={item.icon}
+                        onClick={() => {
+                            navigate(item.path as string);
+                        }}
+                    >
                         {item.title}
                     </Menu.Item>
                 )

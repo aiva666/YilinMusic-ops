@@ -1,15 +1,16 @@
 .console-home {
-    &>header {
+    & > header {
         display: flex;
         justify-content: space-between;
         background-color: #fff;
-        padding:26px;
+        padding: 26px;
         border-radius: 6px;
         box-sizing: content-box;
+        box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.02);
         .header-welcome {
             display: flex;
             align-items: center;
-            &>div {
+            & > div {
                 margin-left: 16px;
                 p {
                     margin-bottom: 6px;
@@ -24,16 +25,24 @@
         .btns {
             display: flex;
             align-items: center;
-            &>button {
-                &:first-of-type {margin-right: 16px;}
+            & > button {
+                &:first-of-type {
+                    margin-right: 16px;
+                }
             }
         }
     }
     .section-user-statistical {
         display: flex;
         justify-content: space-between;
-        &>div {
+        & > div {
             width: calc(25% - 26px);
+            box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.02);
+        }
+    }
+    .section-user-incrementOfLatestMonth {
+        h4 {
+            margin-bottom: 26px;
         }
     }
 }

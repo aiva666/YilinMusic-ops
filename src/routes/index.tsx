@@ -1,9 +1,11 @@
 /*
  * @Date: 2021-09-18 10:44:06
  * @LastEditors: Aiva
- * @LastEditTime: 2021-12-17 14:26:05
+ * @LastEditTime: 2021-12-20 16:24:00
  * @FilePath: \yilin-music-ops\src\routes\index.tsx
  */
+
+import { RouteObject } from "react-router-dom";
 
 // 登录
 import Login from "@/views/Login";
@@ -12,9 +14,10 @@ import Login from "@/views/Login";
 import Console from "@/views/Console";
 // 控制台---首页
 import Home from "@/views/Console/Home";
+// 控制台---曲库管理
+import MusicLibrary from "@/views/Console/MusicLibrary";
 
-import { RouteObject } from "react-router-dom";
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, AppstoreOutlined } from "@ant-design/icons";
 
 export interface TRouterConfig extends RouteObject {
     title: string;
@@ -44,6 +47,11 @@ const routerEnum: TRouterEnum = {
         icon: <HomeOutlined />,
         name: "home",
     },
+    "/console/musicLibrary": {
+        title: "曲库管理",
+        icon: <AppstoreOutlined />,
+        name: "musicLibrary",
+    },
 };
 
 export const routeConfig: RouteObject[] = [
@@ -59,6 +67,10 @@ export const routeConfig: RouteObject[] = [
                 path: "home",
                 element: <Home />,
             },
+            {
+                path: "musicLibrary",
+                element: <MusicLibrary />,
+            },
         ],
     },
 ];
@@ -70,7 +82,7 @@ type TdeepInitMenuConfig = (
 const deepInitMenuConfig: TdeepInitMenuConfig = (routers, prefix = "") =>
     routers.map(item => {
         const path: string = prefix + item.path;
-        const { title, icon, name,} = routerEnum[path];
+        const { title, icon, name } = routerEnum[path];
         const response: TRouterConfig = {
             path,
             title,
@@ -83,4 +95,7 @@ const deepInitMenuConfig: TdeepInitMenuConfig = (routers, prefix = "") =>
         return response;
     });
 
-export const menuConfig = deepInitMenuConfig(routeConfig[1]["children"] as RouteObject[], "/console/")
+export const menuConfig = deepInitMenuConfig(
+    routeConfig[1]["children"] as RouteObject[],
+    "/console/"
+);
